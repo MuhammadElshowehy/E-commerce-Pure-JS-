@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/signUp.css" />
+    <title>Elshowehy Market | Sign Up</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="./index.html" class="logo">Elshowehy</a>
+          <nav>
+            <ul id="links">
+              <li><a href="./signIn.html">Sign In</a></li>
+              <li><a href="./signUp.html">Sign Up</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- sign up and sign in form -->
+    <section class="form-section">
+      <h2>Sign Up</h2>
+      <form novalidate>
+        <input
+          type="text"
+          placeholder="Enter Username.."
+          autofocus
+          id="username"
+        />
+        <input type="email" placeholder="Enter Email.." id="email" />
+        <input type="password" placeholder="Enter Password.." id="password" />
+        <input type="submit" value="Sign Up" id="signup" />
+      </form>
+      <p id="alert">Please fill inputs</p>
+    </section>
+    <!-- end sign up and sign in form -->
+
+    <script src="./js/signUp.js"></script>
+  </body>
+</html>
