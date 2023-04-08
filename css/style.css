@@ -217,6 +217,9 @@ header {
   align-items: flex-start;
   padding: 10px;
 }
+.home .product .disc h5 {
+  color: var(--navy-blue);
+}
 .home .product .disc p,
 .home .product .disc span {
   font-size: .75rem;

@@ -4,51 +4,55 @@ let navUsername = document.querySelector("#username");
 let logOut = document.querySelector("#logout");
 let productsDom = document.querySelector(".home .products");
 
-if (localStorage.getItem("username")) {
+let EZShopUser = localStorage.getItem("EZShopUser");
+EZShopUser = JSON.parse(EZShopUser);
+if (EZShopUser.logged) {
   navLinks.remove();
   navUser.style.display = "flex";
-  navUsername.innerHTML = localStorage.getItem("username");
+  navUsername.innerHTML = EZShopUser.userName;
 }
 
 logOut.addEventListener("click", function () {
-  localStorage.clear();
+  EZShopUser.logged = false;
+  window.localStorage.setItem("EZShopUser", JSON.stringify(EZShopUser));
   setTimeout(() => {
-    window.location = "/signUp.html";
+    window.location = "/signIn.html";
   }, 2000);
 });
 
 /* stat show products */
+let id = 0;
 let productsArr = [
   {
-    id: 1,
+    id: ++id,
     img: "./images/perfume.webp",
     title: "perfume",
     disc: "Lorem ipsum dolor sit amet consectetur",
     price: "20$",
   },
   {
-    id: 2,
+    id: ++id,
     img: "./images/camera.jpg",
     title: "camera",
     disc: "Lorem ipsum dolor sit amet consectetur",
     price: "20$",
   },
   {
-    id: 3,
+    id: ++id,
     img: "./images/watch.jpg",
     title: "watch",
     disc: "Lorem ipsum dolor sit amet consectetur",
     price: "20$",
   },
   {
-    id: 4,
+    id: ++id,
     img: "./images/cocacola.jpg",
     title: "cocacola",
     disc: "Lorem ipsum dolor sit amet consectetur",
     price: "20$",
   },
   {
-    id: 5,
+    id: ++id,
     img: "./images/lens.jpg",
     title: "lens",
     disc: "Lorem ipsum dolor sit amet consectetur",
@@ -58,22 +62,40 @@ let productsArr = [
 
 function showProducts() {
   let productsUi = productsArr.map((item) => {
-    return `
-      <div class="product">
-        <img src="${item.img}" alt="${item.title} image" />
-          <div class="disc">
-            <h6>${item.title} </h6>
-            <p>Lorem ipsum dolor sit amet consectetur</p>
-            <span>Price: ${item.price}</span>
-          </div>
-          <div class="actions">
-            <button class="button add-to-cart">Add to cart</button>
-            <i class="fa-regular fa-heart" id="addFavorite"></i>
-          </div>
-      </div>
-    `;
+    let product = document.createElement("div");
+    product.classList.add("product");
+    let img = document.createElement("img");
+    img.src = item.img;
+    img.alt = `${item.title} image`;
+    product.appendChild(img);
+    let disc = document.createElement("div");
+    disc.classList.add("disc");
+    let title = document.createElement("h5");
+    title.appendChild(document.createTextNode(item.title));
+    let p = document.createElement("p");
+    p.appendChild(document.createTextNode(item.disc));
+    let price = document.createElement("span");
+    price.appendChild(document.createTextNode(`Price: ${item.price}`));
+    disc.appendChild(title);
+    disc.appendChild(p);
+    disc.appendChild(price);
+    let actions = document.createElement("div");
+    actions.classList.add("actions");
+    let button = document.createElement("button");
+    button.classList.add("button", "add-to-cart");
+    button.appendChild(document.createTextNode("Add to cart"));
+    let i = document.createElement("i");
+    i.classList.add("fa-regular", "fa-heart");
+    i.id = "add-favorite";
+    actions.appendChild(button);
+    actions.appendChild(i);
+    product.appendChild(disc);
+    product.appendChild(actions);
+    return product;
   });
-  productsDom.innerHTML = productsUi;
+  for (let i = 0; i < productsUi.length; i++) {
+    productsDom.appendChild(productsUi[i]);
+  }
 }
 showProducts();
 /* end show products */
@@ -87,9 +109,7 @@ let cartProducts = document.querySelector(".cart-window .cart-products");
 let badge = document.querySelector(".cart-icon .badge");
 
 function checkUserLogged() {
-  if (localStorage.getItem("username")) {
-    // console.log("added to cart");
-  } else {
+  if (EZShopUser.logged === false) {
     window.location = "../signIn.html";
   }
 }
@@ -97,12 +117,13 @@ function checkUserLogged() {
 for (let i = 0; i < addToCartButton.length; i++) {
   addToCartButton[i].addEventListener("click", function () {
     checkUserLogged();
-    // takeProductId();
+    takeProductId();
     takeProductTitle();
 
-    // function takeProductId() {
-    //   let product = productsArr[i];
-    // }
+    function takeProductId() {
+      let productId = productsArr[i].id;
+      console.log(productId);
+    }
 
     function takeProductTitle() {
       let productTitle = document.createElement("p");
@@ -126,7 +147,7 @@ for (let i = 0; i < addToCartButton.length; i++) {
 }
 
 // toggle show for cart window:
-function showHideCartWindow() {
+function cartWindowToggleShow() {
   if (cartProducts.innerHTML != "") {
     if (cartWindow.style.display == "block") {
       cartWindow.style.display = "none";
@@ -135,5 +156,5 @@ function showHideCartWindow() {
     }
   }
 }
-cartIcon.addEventListener("click", showHideCartWindow);
+cartIcon.addEventListener("click", cartWindowToggleShow);
 /* end add to cart button && take product id && update number of cart badge*/

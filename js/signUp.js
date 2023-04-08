@@ -32,14 +32,16 @@ function signUpValidation() {
   let emailValid = emailRegex.test(email.value);
   let passwordValid = passwordRegex.test(password.value);
 
-  // console.log(userNameValid);
-  // console.log(emailValid);
-  // console.log(passwordValid);
   if (userNameValid && emailValid && passwordValid) {
     function storeInLocalStorage() {
-      localStorage.setItem("username", userName.value);
-      localStorage.setItem("email", email.value);
-      localStorage.setItem("password", password.value);
+      // crete user:
+      let EZShopUser = {
+        userName: userName.value,
+        email: email.value,
+        password: password.value,
+        logged: false,
+      };
+      localStorage.setItem("EZShopUser", JSON.stringify(EZShopUser));
     }
     storeInLocalStorage();
     setTimeout(() => {
