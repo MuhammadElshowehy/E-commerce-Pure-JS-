@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <title>Elshowehy Market | Home</title>
-</head>
-<body>
-  <header>
-    <div class="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>EZShop | Home</title>
+  </head>
+  <body>
+    <header>
       <div class="header-content">
-        <a href="./index.html" class="logo">Elshowehy</a>
+        <a href="./index.html" class="logo">EZShop</a>
         <nav>
           <ul id="links">
             <li><a href="./signIn.html">Sign In</a></li>
@@ -19,20 +23,28 @@
           </ul>
           <ul id="user">
             <li><a href="#" id="username"></a></li>
+            <li class="cart-icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="badge"></span>
+              <div class="cart-window">
+                <div class="cart-products"></div>
+                <a href="/cartProducts.html">View all products</a>
+              </div>
+            </li>
             <li><a href="#" id="logout">Log out</a></li>
           </ul>
         </nav>
       </div>
-    </div>
-  </header>
-  <div>
-    Home
-  </div>
+    </header>
+    <!-- start home content -->
+    <section class="home">
+      <div class="container">
+        <div class="products"></div>
+      </div>
+    </section>
+    <!-- end home content -->
 
-  <footer>
-    footer
-  </footer>
-  <!-- main script file -->
-  <script src="./js/main.js"></script>
-</body>
+    <footer>footer</footer>
+    <script src="./js/main.js"></script>
+  </body>
 </html>

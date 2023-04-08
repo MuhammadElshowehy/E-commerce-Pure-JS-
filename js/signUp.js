@@ -41,11 +41,9 @@ function signUpValidation() {
       localStorage.setItem("email", email.value);
       localStorage.setItem("password", password.value);
     }
+    storeInLocalStorage();
     setTimeout(() => {
-      window.location = "/signIn.html";
+      window.location = "signIn.html";
     }, 2000);
-  } else {
-    // console.log("bad");
   }
-  storeInLocalStorage();
 }

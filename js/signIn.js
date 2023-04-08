@@ -11,7 +11,7 @@ signIn.addEventListener("click", function (e) {
   checkEmptyOrNot();
   if (userName.value.trim() === storedUserName && password.value.trim() === storedPassword) {
     setTimeout(() => {
-      window.location = "/index.html";
+      window.location = "index.html";
     }, 2000);
   }
 });
