@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cart Products | EZShop</title>
-</head>
-<body>
-  cart products
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/cartProducts.css" />
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>Cart Products | EZShop</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <a href="./index.html" class="logo">EZShop</a>
+        <nav>
+          <ul id="links">
+            <li><a href="./signIn.html">Sign In</a></li>
+            <li><a href="./signUp.html">Sign Up</a></li>
+          </ul>
+          <ul id="user">
+            <li><a href="#" id="username"></a></li>
+            <li><a href="#" id="logout">Log out</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <h2>Cart</h2>
+    <!-- start cart products content -->
+    <section class="show">
+      <div class="container">
+        <div class="products"></div>
+      </div>
+    </section>
+    <!-- end home content -->
+    <script src="./js/checkUserLogged.js"></script>
+    <script src="./js/cartProducts.js"></script>
+  </body>
 </html>

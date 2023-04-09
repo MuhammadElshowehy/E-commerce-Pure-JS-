@@ -36,7 +36,7 @@ a {
   color: var(--white);
   padding: 5px 10px;
   border-radius: var(--border-radius);
-  transition: .3s;
+  transition: 0.3s;
 }
 .button:hover {
   color: var(--navy-blue);
@@ -51,13 +51,18 @@ a {
   --button-background: rgb(21, 154, 156);
   --navy-blue: rgb(0, 35, 51);
   --window-background: rgb(222, 239, 231);
-  --box-shadow: 0 4px 6px 1px rgb(0, 35, 51, 0.2), 0 0 0 1px rgba(0, 35, 51, 0.05);
+  --box-shadow: 0 4px 6px 1px rgb(0, 35, 51, 0.2),
+    0 0 0 1px rgba(0, 35, 51, 0.05);
   --border-radius: 5px;
 }
 header {
   background-color: var(--navy-blue);
   padding: 10px 20px;
   box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-height: 60px;
 }
 .header-content {
   display: flex;
@@ -68,21 +73,20 @@ header {
   color: var(--white);
   font-size: 2rem;
 }
-.header-content nav ul#links li a {
-  padding: 0 10px;  
+.header-content nav ul#links li,
+.header-content nav ul#user li {
+  margin: 0 10px;
+}
+.header-content nav ul#links li a,
+.header-content nav ul#user li a {
   color: var(--white);
 }
 .header-content nav ul#user {
   display: none;
 }
-.header-content nav ul#user li a {
-  color: var(--white);
-  margin: 10px;
-}
 /* start cart icon */
 .header-content nav ul#user .cart-icon {
   position: relative;
-  margin: 0 15px;
 }
 .header-content nav ul#user .cart-icon i {
   color: var(--white);
@@ -95,8 +99,9 @@ header {
   border-radius: 50%;
   background-color: var(--white);
   color: var(--navy-blue);
-  font-size: .75rem;
+  font-size: 0.65rem;
   text-align: center;
+  line-height: 15px;
   position: absolute;
   top: -5px;
   right: -13px;
@@ -113,6 +118,10 @@ header {
   transform: translateX(-85%);
   border: 1px solid var(--navy-blue);
 }
+.header-content nav ul#user .cart-icon .cart-window .cart-products {
+  max-height: 200px;
+  overflow: hidden;
+}
 .header-content nav ul#user .cart-icon .cart-window p {
   padding: 10px 5px;
   background-color: var(--window-background);
@@ -126,12 +135,21 @@ header {
   display: inline-block;
   text-align: center;
   min-width: 100%;
-  transition: .3s;
+  transition: 0.3s;
 }
 .header-content nav ul#user .cart-icon .cart-window a:hover {
   color: var(--navy-blue);
 }
 /* end cart icon */
+h2 {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--button-background);
+  background-color: var(--window-background);
+  font-size: 2rem;
+}
 /* start sign up and sign in form */
 .form-section {
   width: 360px;
@@ -154,13 +172,13 @@ header {
   letter-spacing: 2px;
 }
 .form-section #alert {
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: red;
-  visibility:hidden;
+  visibility: hidden;
 }
 .form-section .switch {
   margin-top: 10px;
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: var(--navy-blue);
 }
 .form-section form {
@@ -180,21 +198,21 @@ header {
   color: var(--white);
   font-size: 1rem;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 .form-section form input[type="submit"]:hover {
   color: var(--navy-blue);
 }
 /* end sign up and sign in form */
 /* start home style */
-.home .products {
+.show .products {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
   gap: 20px 10px;
 }
-.home .product {
+.show .product {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -204,27 +222,27 @@ header {
   width: 200px;
   background-color: var(--window-background);
 }
-.home .product img {
+.show .product img {
   width: 100%;
   min-height: 200px;
   max-height: 200px;
   border-radius: 5px 5px 0 0;
 }
-.home .product .disc {
+.show .product .disc {
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-end;
   align-items: flex-start;
   padding: 10px;
 }
-.home .product .disc h5 {
+.show .product .disc h5 {
   color: var(--navy-blue);
 }
-.home .product .disc p,
-.home .product .disc span {
-  font-size: .75rem;
+.show .product .disc p,
+.show .product .disc span {
+  font-size: 0.75rem;
 }
-.home .product .actions {
+.show .product .actions {
   width: 100%;
   border-top: 1px solid var(--navy-blue);
   display: flex;
@@ -232,13 +250,13 @@ header {
   align-items: center;
   padding: 10px;
 }
-.home .product .actions i {
+.show .product .actions i {
   color: var(--navy-blue);
   cursor: pointer;
   font-size: 1.5rem;
-  transition: .3s;
+  transition: 0.3s;
 }
-.home .product .actions i:hover {
+.show .product .actions i:hover {
   color: var(--button-background);
   font-weight: bold;
 }
