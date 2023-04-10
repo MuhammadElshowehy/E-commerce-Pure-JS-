@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+input {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+ul {
+  list-style: none;
+  display: flex;
+}
+a {
+  text-decoration: none;
+  margin: 0 !important;
+}
+.button {
+  border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
+  background-color: var(--button-background);
+  color: var(--white);
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  transition: 0.3s;
+}
+.button:hover {
+  color: var(--navy-blue);
+}
+.container {
+  width: 96%;
+  margin: auto;
+  padding: 40px 0;
+}
+:root {
+  --white: rgb(255, 255, 255);
+  --button-background: rgb(21, 154, 156);
+  --navy-blue: rgb(0, 35, 51);
+  --window-background: rgb(222, 239, 231);
+  --box-shadow: 0 4px 6px 1px rgb(0, 35, 51, 0.2),
+    0 0 0 1px rgba(0, 35, 51, 0.05);
+  --border-radius: 5px;
+}
+.page-title {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--button-background);
+  background-color: var(--window-background);
+  font-size: 2rem;
+}

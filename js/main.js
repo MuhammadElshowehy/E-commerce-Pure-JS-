@@ -1,23 +1,30 @@
 /* start show products */
-let productsDom = document.querySelector(".show .products");
+allProducts = window.localStorage.getItem("allProducts");
+allProducts = JSON.parse(allProducts);
 
+let productsDom = document.querySelector(".show .products");
 function showProducts() {
-  let productsUi = productsArr.map((item) => {
+  let productsUi = allProducts.map((item) => {
     let product = document.createElement("div");
     product.classList.add("product");
+    // give productId for product div:
+    product.setAttribute("data-id", `${item.id}`);
     let img = document.createElement("img");
     img.src = item.img;
     img.alt = `${item.title} image`;
     product.appendChild(img);
     let disc = document.createElement("div");
     disc.classList.add("disc");
-    let title = document.createElement("h5");
-    title.appendChild(document.createTextNode(item.title));
+    // give productId for disc div:
+    disc.setAttribute("data-id", `${item.id}`);
+    let productTitle = document.createElement("h5");
+    productTitle.classList.add("product-title");
+    productTitle.appendChild(document.createTextNode(item.title));
     let p = document.createElement("p");
     p.appendChild(document.createTextNode(item.disc));
     let price = document.createElement("span");
     price.appendChild(document.createTextNode(`Price: ${item.price}`));
-    disc.appendChild(title);
+    disc.appendChild(productTitle);
     disc.appendChild(p);
     disc.appendChild(price);
     let actions = document.createElement("div");
@@ -42,36 +49,29 @@ function showProducts() {
 }
 showProducts();
 /* end show products */
+
 /* start add to cart button && take product id && update number of cart badge*/
 // catch all add-to-cart buttons:
-let addToCartButton = document.querySelectorAll(".add-to-cart");
-let cartWindow = document.querySelector(".cart-window");
-let cartIcon = document.querySelector(".cart-icon i");
-let cartProducts = document.querySelector(".cart-window .cart-products");
+let cartIcon = document.querySelector(".cart-icon a i");
 let badge = document.querySelector(".cart-icon .badge");
 
-// check products in local storage?
+// check cartProducts in local storage?
 let cartProductsInLocalStorage = localStorage.getItem("cartProducts")
   ? JSON.parse(localStorage.getItem("cartProducts"))
   : [];
 
 // start cart icon.
-function cartWindowToggleShow() {
-  if (cartProducts.innerHTML != "") {
-    if (cartWindow.style.display == "block") {
-      cartWindow.style.display = "none";
-    } else {
-      cartWindow.style.display = "block";
-    }
+function openCartPage() {
+  if (
+    cartProductsInLocalStorage === null ||
+    cartProductsInLocalStorage.length == 0
+  ) {
+    window.location = "../signIn.html";
+  } else {
+    window.location = "../cartProducts.html";
   }
 }
-cartIcon.addEventListener("click", cartWindowToggleShow);
-
-if (cartProductsInLocalStorage) {
-  cartProductsInLocalStorage.map((item) => {
-    cartProducts.innerHTML += `<P>${item.title}</P>`;
-  });
-}
+cartIcon.addEventListener("click", openCartPage);
 
 function updateBadgeNum() {
   let badgeNumber = cartProductsInLocalStorage.length;
@@ -85,42 +85,57 @@ function updateBadgeNum() {
 updateBadgeNum();
 // end cart icon.
 // start add-to-cart action.
+let addToCartButton = document.querySelectorAll(".add-to-cart");
 for (let i = 0; i < addToCartButton.length; i++) {
   addToCartButton[i].addEventListener("click", function () {
     function checkUserLogged() {
-      if (EZShopUser.logged === false) {
-        window.location = "/signIn.html";
+      if (window.localStorage.getItem("EZShopUser")) {
+        EZShopUser = window.localStorage.getItem("EZShopUser");
+        EZShopUser = JSON.parse(EZShopUser);
+        if (EZShopUser.logged == false) {
+          window.location = "/signIn.html";
+        } else {
+          sendCartProductsToLocalStorage();
+          updateBadgeNum();
+        }
       } else {
-        takeProductTitle();
+        window.location = "/signIn.html";
       }
     }
     checkUserLogged();
-
-    /*
-    function takeProductId() {
-      let productId = productsArr[i].id;
-      console.log(productId);
+    // store cartProducts in local storage:
+    function sendCartProductsToLocalStorage() {
+      let productId = addToCartButton[i].parentElement.getAttribute("data-id");
+      if (productId == allProducts[i].id) {
+        cartProductsInLocalStorage.push(allProducts[i]);
+        window.localStorage.setItem(
+          "cartProducts",
+          JSON.stringify(cartProductsInLocalStorage)
+        );
+      }
     }
-    takeProductId();
-    */
-
-    function takeProductTitle() {
-      let productTitle = document.createElement("p");
-      productTitle.appendChild(document.createTextNode(productsArr[i].title));
-      cartProducts.prepend(productTitle);
-    }
-
-    // store cart product in local storage:
-    function sendCartProductsInLocalStorage() {
-      cartProductsInLocalStorage.push(productsArr[i]);
-      window.localStorage.setItem(
-        "cartProducts",
-        JSON.stringify(cartProductsInLocalStorage)
-      );
-    }
-    sendCartProductsInLocalStorage();
-    updateBadgeNum();
   });
 }
 // end add-to-cart action.
 /* end add to cart button && take product id && update number of cart badge*/
+
+/** start product details **/
+let productImg = document.querySelectorAll(".product img");
+for (let i = 0; i < productImg.length; i++) {
+  productImg[i].addEventListener("click", function () {
+    let productId = productImg[i].parentElement.getAttribute("data-id");
+    function catchProductWithTheSameId() {
+      for (let i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].id == productId) {
+          window.localStorage.setItem(
+            "productDetails",
+            JSON.stringify(allProducts[i])
+          );
+        }
+      }
+    }
+    catchProductWithTheSameId();
+    window.location = "../productDetails.html";
+  });
+}
+/** end product details **/

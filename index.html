@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <!-- css files -->
+    <link rel="stylesheet" href="./css/basics.css" />
+    <link rel="stylesheet" href="./css/header-footer.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <!-- font awesome cdn -->
     <link
       rel="stylesheet"
@@ -24,30 +27,28 @@
           <ul id="user">
             <li><a href="#" id="username"></a></li>
             <li class="cart-icon">
-              <i class="fa-solid fa-cart-shopping"></i>
+              <a href="/cartProducts.html"
+                ><i class="fa-solid fa-cart-shopping"></i
+              ></a>
               <span class="badge"></span>
-              <div class="cart-window">
-                <div class="cart-products"></div>
-                <a href="/cartProducts.html">View all products</a>
-              </div>
             </li>
             <li><a href="#" id="logout">Log out</a></li>
           </ul>
         </nav>
       </div>
     </header>
-    <h2>Welcome to EZShop</h2>
-      <!-- start home content -->
-      <section class="show">
-        <div class="container">
-          <div class="products"></div>
-        </div>
-      </section>
-      <!-- end home content -->
+    <h2 class="page-title">Welcome to EZShop</h2>
+    <!-- start home content -->
+    <section class="show">
+      <div class="container">
+        <div class="products"></div>
+      </div>
+    </section>
+    <!-- end home content -->
 
     <footer>footer</footer>
-    <script src="./js/products.js"></script>
-    <script src="./js/checkUserLogged.js"></script>
+    <script src="./js/allProducts.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/checkUserLogged.js"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 let id = 0;
-let productsArr = [
+let allProducts = [
   {
     id: ++id,
     img: "./images/perfume.webp",
@@ -36,3 +36,4 @@ let productsArr = [
     price: "20$",
   },
 ];
+window.localStorage.setItem("allProducts", JSON.stringify(allProducts));
